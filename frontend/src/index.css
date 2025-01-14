@@ -5,8 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
-  background-image: url("bg1.jpg");
+  background-color: #feebe5;
+  /* background-image: url("bg1.jpg"); */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,4 +36,3 @@ h1 {
   font-size: 1.7em;
   line-height: 1.1;
 }
-
