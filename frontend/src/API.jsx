@@ -1,39 +1,34 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
+import { useState } from "react";
 import DisplayCard from "./DisplayCard.jsx";
 
-export default function API({ city }) {
-  let URL = "--";
-  let API_KEY = "--";
+export default function API({ city, name }) {
+  let URL = "http://localhost:3000/weather?";
+  // let API_KEY = "5f379b3009bb953135e022dbeab29120";
 
   let [weatherInfo, setWeatherInfo] = useState({});
   let Response = async () => {
-    if (city === '') {
+    if (city === "") {
       return null; // as on first reload no data can also pass a example city in useState
     }
-try {
-  let res = await fetch(`${URL}q=${city}&appid=${API_KEY}&units=metric`);
-  let jsonres = await res.json();
-    
-    let Weather = {
-        city: jsonres.name,
-        country: jsonres.sys.country,
-        temp: jsonres.main.temp,
-        temp_min: jsonres.main.temp_min,
-        temp_max: jsonres.main.temp_max,
-        description: jsonres.weather[0].description,
-    };
-    console.log(Weather);
-    setWeatherInfo(Weather);
-} catch (error) {
-  setWeatherInfo({
-    Error : `City not found!!`
-  })
-}
-    
+    try {
+      console.log(name);
+      let res = await fetch(`${URL}city=${city}&name=${name}`); //&appid=${API_KEY}&units=metric`);
+      let jsonres = await res.json();
+
+      let Weather = jsonres;
+      console.log(Weather);
+      setWeatherInfo(Weather);
+    } catch (error) {
+      setWeatherInfo({
+        Error: `City not found!!`,
+      });
+    }
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     Response();
   }, [city]);
 
